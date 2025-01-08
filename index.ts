@@ -18,7 +18,6 @@ const provider = new NodeTracerProvider({
     [SEMRESATTRS_PROJECT_NAME]: "openai-service",
   }),
   spanProcessors: [
-    // new SimpleSpanProcessor(new ConsoleSpanExporter()),
     new SimpleSpanProcessor(
       new OTLPTraceExporter({
         url: "http://localhost:6006/v1/traces",
@@ -54,6 +53,5 @@ openai.chat.completions
     temperature: 0.5,
   })
   .then((response) => {
-    // eslint-disable-next-line no-console
     console.log(response.choices[0].message.content);
   });
